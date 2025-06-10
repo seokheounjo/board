@@ -29,6 +29,8 @@ dependencies {
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	developmentOnly 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0'
+
 }
 tasks.named('test') {
 	useJUnitPlatform()
