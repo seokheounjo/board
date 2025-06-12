@@ -3,12 +3,17 @@ package kr.ac.kopo.ctc.kopo01.board.repository;
 
 import kr.ac.kopo.ctc.kopo01.board.domain.Child;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import java.util.List;
 
 /**
  * Spring Data JPA의 JpaRepository를 상속받는 ChildRepository 인터페이스
  * @author [작성자 이름]
  */
 public interface ChildRepository extends JpaRepository<Child, Long> {
+//    @Query("SELECT c FROM Child c left join c.parent")
+//    List<Child> fetchAll();
     // JpaRepository<엔티티타입, ID타입>
     // - 첫 번째 제네릭 타입 <Child>: 이 리포지토리가 다룰 엔티티 클래스
     // - 두 번째 제네릭 타입 <Long>: 엔티티의 기본키(@Id) 타입
