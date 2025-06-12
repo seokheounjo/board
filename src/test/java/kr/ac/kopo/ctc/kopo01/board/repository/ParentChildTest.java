@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.List;
+
 /**
  * Parent와 Child 엔티티 간의 관계를 테스트하는 클래스
  */
@@ -27,10 +29,10 @@ public class ParentChildTest {
     @BeforeEach  // 각 테스트 메서드 실행 전에 실행됨
     public void beforeEach() {
         // 5개의 Parent-Child 쌍을 생성
-        for (int i = 31; i <= 35; i++) {
+        for (int i = 1; i <= 5; i++) {
             // Parent 엔티티 생성 및 저장
             Parent parent = new Parent();
-            parent.setName("parent" + i+ 12);
+            parent.setName("parent" + i);
             parentRepository.save(parent);
 
             // Child 엔티티 생성 및 Parent와 연관관계 설정 후 저장
@@ -50,4 +52,13 @@ public class ParentChildTest {
         // 여기에 실제 검증 로직을 추가할 수 있음
         // 예: assert 구문을 사용한 데이터 검증
     }
+
+    @Test
+    public void findAll() {
+        List<Child> children = childRepository.findAll();
+        for(Child c : children) {
+            System.out.println(c.getName());
+        }
+    }
+
 }
