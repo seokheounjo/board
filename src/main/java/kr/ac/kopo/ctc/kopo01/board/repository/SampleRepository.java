@@ -25,7 +25,8 @@ import java.util.Optional;
  * JpaRepository를 상속받아 기본적인 CRUD 기능을 제공하며,
  * JpaSpecificationExecutor를 통해 복잡한 동적 조건 쿼리도 지원한다.
  */
-public interface SampleRepository extends JpaRepository<Sample, Long>, JpaSpecificationExecutor<Sample> {
+public interface SampleRepository extends JpaRepository<Sample, Long>, JpaSpecificationExecutor<Sample>
+{
 
     /**
      * title이 특정 문자열과 일치하는 Sample 객체 하나를 Optional로 조회.
@@ -53,3 +54,5 @@ public interface SampleRepository extends JpaRepository<Sample, Long>, JpaSpecif
     @Query("SELECT s FROM Sample s WHERE s.title LIKE %:title%")
     List<Sample> findAllByNameLike(@Param("title") String title);
 }
+
+

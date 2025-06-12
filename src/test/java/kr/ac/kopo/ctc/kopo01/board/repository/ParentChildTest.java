@@ -43,21 +43,21 @@ public class ParentChildTest {
      * Parent와 Child 데이터를 생성하고 저장하는 역할
      */
 //    @BeforeEach  // 각 테스트 메서드 실행 전에 실행됨
-    public void beforeEach() {
-        // 5개의 Parent-Child 쌍을 생성
-        for (int i = 1; i <= 5; i++) {
-            // Parent 엔티티 생성 및 저장
-            Parent parent = new Parent();
-            parent.setName("parent" + i);
-            parentRepository.save(parent);
-
-            // Child 엔티티 생성 및 Parent와 연관관계 설정 후 저장
-            Child child = new Child();
-            child.setName("child" + i);
-            child.setParent(parent);  // Parent-Child 관계 설정
-            childRepository.save(child);
-        }
-    }
+//    public void beforeEach() {
+//        // 5개의 Parent-Child 쌍을 생성
+//        for (int i = 1; i <= 5; i++) {
+//            // Parent 엔티티 생성 및 저장
+//            Parent parent = new Parent();
+//            parent.setName("parent" + i);
+//            parentRepository.save(parent);
+//
+//            // Child 엔티티 생성 및 Parent와 연관관계 설정 후 저장
+//            Child child = new Child();
+//            child.setName("child" + i);
+//            child.setParent(parent);  // Parent-Child 관계 설정
+//            childRepository.save(child);
+//        }
+//    }
 
     /**
      * Parent-Child 관계가 정상적으로 설정되었는지 테스트하는 메서드
@@ -79,6 +79,20 @@ public class ParentChildTest {
     @Test
     void findAll() {
         List<Child> children = childRepository.findAll();
+        for(Child c : children) {
+            c.getParent().getName();
+        }
+    }
+    @Test
+    void fetchAll() {
+        List<Child> children = childRepository.fetchAll();
+        for(Child c : children) {
+            c.getParent().getName();
+        }
+    }
+    @Test
+    void selectAll() {
+        List<Child> children = childRepository.fetchAll();
         for(Child c : children) {
             c.getParent().getName();
         }
