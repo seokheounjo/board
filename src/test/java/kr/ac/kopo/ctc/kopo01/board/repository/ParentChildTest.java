@@ -27,10 +27,10 @@ public class ParentChildTest {
     @BeforeEach  // 각 테스트 메서드 실행 전에 실행됨
     public void beforeEach() {
         // 5개의 Parent-Child 쌍을 생성
-        for (int i = 1; i <= 5; i++) {
+        for (int i = 31; i <= 35; i++) {
             // Parent 엔티티 생성 및 저장
             Parent parent = new Parent();
-            parent.setName("parent" + i);
+            parent.setName("parent" + i+ 12);
             parentRepository.save(parent);
 
             // Child 엔티티 생성 및 Parent와 연관관계 설정 후 저장
