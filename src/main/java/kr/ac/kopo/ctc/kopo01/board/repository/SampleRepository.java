@@ -13,6 +13,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 // 조건 기반 동적 쿼리를 위한 스펙 인터페이스
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 // 리스트, Optional 등 자바 컬렉션 관련 클래스 import
 import java.util.List;
@@ -44,4 +46,10 @@ public interface SampleRepository extends JpaRepository<Sample, Long>, JpaSpecif
      * - 조건: title = ?
      */
     List<Sample> findAllByTitle(String type);
+
+    List<Sample> findAllByTitleContaining(String title);
+
+    // 2) JPQL
+    @Query("SELECT s FROM Sample s WHERE s.title LIKE %:title%")
+    List<Sample> findAllByNameLike(@Param("title") String title);
 }

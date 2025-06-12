@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @SpringBootTest
@@ -25,6 +26,21 @@ public class SampleRepositoryTest {
 
         for(Sample s : page) {
             System.out.println(s.getTitle());
+        }
+    }
+    @Test
+    void findAllByTitleContaining() {
+        List<Sample> samples = sampleRepository.findAllByTitleContaining("t");
+        for (Sample sample : samples) {
+            System.out.println(sample.getTitle());
+        }
+    }
+
+    @Test
+    void findAllByNameLike() {
+        List<Sample> samples = sampleRepository.findAllByNameLike("t");
+        for (Sample sample : samples) {
+            System.out.println(sample.getTitle());
         }
     }
 }
