@@ -2,19 +2,20 @@
 package kr.ac.kopo.ctc.kopo01.board.web;
 
 // 도메인 객체와 리포지토리 인터페이스 import
+import jakarta.servlet.http.HttpServletRequest;
 import kr.ac.kopo.ctc.kopo01.board.domain.Sample; // DB 테이블과 매핑되는 Sample 엔티티 클래스
 import kr.ac.kopo.ctc.kopo01.board.repository.SampleRepository; // Sample 데이터를 다루는 JPA 리포지토리
 
 // Spring Framework 관련 기능 import
 import kr.ac.kopo.ctc.kopo01.board.service.SampleService;
 import org.springframework.beans.factory.annotation.Autowired; // 의존성 주입을 위한 애너테이션
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller; // 이 클래스가 웹 요청을 처리하는 컨트롤러임을 명시
 import org.springframework.ui.Model; // 뷰 템플릿에 데이터를 전달하기 위한 모델 객체 (현재는 미사용)
-import org.springframework.web.bind.annotation.GetMapping; // GET 요청 매핑을 위한 애너테이션
-import org.springframework.web.bind.annotation.RequestMapping; // 클래스 단위의 URL 경로 지정
-import org.springframework.web.bind.annotation.ResponseBody; // 응답 결과를 JSON 또는 문자열 그대로 반환
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List; // Sample 객체 리스트 타입을 사용하기 위한 import
+import java.util.Map;
 
 /**
  * SampleController는 /sample 경로 이하의 요청을 처리하는 웹 컨트롤러로,
@@ -65,6 +66,50 @@ public class SampleController {
     @ResponseBody
     public  String Cache(Model model) {
         return  sampleService.testNoCache(3L);
+    }
+
+
+    @GetMapping("/getParameter")
+    public String getParameter(Model model, HttpServletRequest req) {
+        String title = req.getParameter("title");
+        model.addAttribute("title", title);
+        return "sample";
+    }
+
+    @GetMapping("/requestParam")
+    public String requestParam(Model model, @RequestParam String title) {
+        model.addAttribute("title", title);
+        return "sample";
+    }
+
+    @GetMapping("/pathVariable/{title}")
+    public String pathVariable(Model model, @PathVariable String title) {
+        model.addAttribute("title", title);
+        return "sample";
+    }
+
+    @GetMapping("/modelAttribute")
+    public String modelAttribute(Model model, @ModelAttribute Sample sample) {
+        model.addAttribute("title", sample.getTitle());
+        return "sample";
+    }
+
+    @PostMapping("/requestBody1")
+    @ResponseBody
+    public ResponseEntity<Sample> requestBody1(@RequestBody Map<String, Object> obj) {
+        Sample sample = new Sample();
+        sample.setId(1L);
+        sample.setTitle((String)obj.get("title"));
+        return ResponseEntity.ok(sample);
+    }
+
+    @PostMapping("/requestBody2")
+    @ResponseBody
+    public Sample requestBody2(@RequestBody Sample sample) {
+        Sample s = new Sample();
+        s.setId(1L);
+        s.setTitle(sample.getTitle());
+        return s;
     }
 
 
