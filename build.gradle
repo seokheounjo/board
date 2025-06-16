@@ -52,7 +52,11 @@ dependencies {
 
 	// AOP
 	implementation 'org.springframework.boot:spring-boot-starter-aop'
-	}
+
+	// Cache
+	implementation 'org.springframwork.boot:spring-boot-starter-cache'
+
+}
 
 tasks.named('test') {
 	useJUnitPlatform()

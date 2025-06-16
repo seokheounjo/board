@@ -1,14 +1,14 @@
 package kr.ac.kopo.ctc.kopo01.board.service;
 
+import jakarta.transaction.Transactional;
 import kr.ac.kopo.ctc.kopo01.board.domain.Sample;
 import kr.ac.kopo.ctc.kopo01.board.repository.SampleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
+public class SampleServicImpl implements SampleService {
 
-public class SampleServicImpl implements SampleService{
     @Autowired
     SampleRepository sampleRepository;
 

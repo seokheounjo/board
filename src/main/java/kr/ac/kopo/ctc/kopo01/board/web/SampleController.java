@@ -26,6 +26,7 @@ public class SampleController {
 
     @Autowired // SampleRepository를 자동으로 주입받음 (Spring Bean으로 등록되어 있어야 함)
     private SampleRepository sampleRepository;
+
     @Autowired
     SampleService sampleService;
 
@@ -48,7 +49,7 @@ public class SampleController {
         sampleService.testNoTransactional();
         return "noTransactional";
     }
-    @GetMapping("/noTransactional")
+    @GetMapping("/transactional")
     @ResponseBody
     public String Transactional(Model model){
         sampleService.testNoTransactional();
