@@ -56,4 +56,16 @@ public class SampleController {
         return "Transactional";
     }
 
+    @GetMapping("/noCache")
+    @ResponseBody
+    public  String noCache(Model model) {
+        return  sampleService.testNoCache(3L);
+    }
+    @GetMapping("/Cache")
+    @ResponseBody
+    public  String Cache(Model model) {
+        return  sampleService.testNoCache(3L);
+    }
+
+
 }
