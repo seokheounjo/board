@@ -78,9 +78,9 @@ public class PaginationInfoService {
         int lastPage = (actualBlockEnd < totalPageCount) ? totalPageCount : -1;
 
         /* ========== 결과 설정 ========== */
-        if (true) {
-            throw new RuntimeException("예외 발생");
-        }
+//        if (true) {
+//            throw new RuntimeException("예외 발생");
+//        }
         // 계산된 값들을 PaginationInfo 객체에 설정
         paginationInfo.setFirstPage(currentBlock > 0 ? 1 : -1);              // 첫페이지 이동: 사용 안 함 (불필요)
         paginationInfo.setPrevPage(prevPage);         // 이전 블록 이동 (-1: 없음)
