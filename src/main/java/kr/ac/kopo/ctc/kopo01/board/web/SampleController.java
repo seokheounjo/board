@@ -112,5 +112,11 @@ public class SampleController {
         return s;
     }
 
+    @GetMapping("/selectOne")
+    @ResponseBody
+    public Sample selectOne(ch.qos.logback.core.model.Model model, @RequestParam Long id) {
+        return sampleService.selectOne(id);
+    }
+
 
 }
