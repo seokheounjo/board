@@ -2,7 +2,7 @@ package kr.ac.kopo.ctc.kopo01.board.web;
 
 
 import kr.ac.kopo.ctc.kopo01.board.domain.board.Post;
-import kr.ac.kopo.ctc.kopo01.board.service.designpattern.PostService;
+import kr.ac.kopo.ctc.kopo01.board.service.PostService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

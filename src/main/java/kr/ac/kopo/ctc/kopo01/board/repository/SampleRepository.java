@@ -28,31 +28,31 @@ import java.util.Optional;
 public interface SampleRepository extends JpaRepository<Sample, Long>, JpaSpecificationExecutor<Sample>
 {
 
-    /**
-     * title이 특정 문자열과 일치하는 Sample 객체 하나를 Optional로 조회.
-     * - 자동으로 WHERE title = ? 쿼리를 생성함
-     * - 결과가 없을 수도 있으므로 Optional로 감싸 반환
-     */
-    Optional<Sample> findOneByTitle(String title);
-
-    /**
-     * title이 특정 값과 일치하는 Sample 객체들을 페이징 처리해서 조회.
-     * - Pageable 객체를 통해 page 번호, 사이즈, 정렬을 전달받음
-     * - 반환은 Page<Sample> 형식으로, 페이징 메타데이터도 포함됨
-     */
-    Page<Sample> findAllByTitle(String type, Pageable pageable);
-
-    /**
-     * title이 특정 값과 일치하는 모든 Sample 객체 리스트를 조회 (페이징 없이 전체 다 가져옴)
-     * - 조건: title = ?
-     */
-    List<Sample> findAllByTitle(String type);
-
-    List<Sample> findAllByTitleContaining(String title);
-
-    // 2) JPQL
-    @Query("SELECT s FROM Sample s WHERE s.title LIKE %:title%")
-    List<Sample> findAllByNameLike(@Param("title") String title);
+//    /**
+//     * title이 특정 문자열과 일치하는 Sample 객체 하나를 Optional로 조회.
+//     * - 자동으로 WHERE title = ? 쿼리를 생성함
+//     * - 결과가 없을 수도 있으므로 Optional로 감싸 반환
+//     */
+//    Optional<Sample> findOneByTitle(String title);
+//
+//    /**
+//     * title이 특정 값과 일치하는 Sample 객체들을 페이징 처리해서 조회.
+//     * - Pageable 객체를 통해 page 번호, 사이즈, 정렬을 전달받음
+//     * - 반환은 Page<Sample> 형식으로, 페이징 메타데이터도 포함됨
+//     */
+////    Page<Sample> findAllByTitle(String type, Pageable pageable);
+////
+////    /**
+////     * title이 특정 값과 일치하는 모든 Sample 객체 리스트를 조회 (페이징 없이 전체 다 가져옴)
+////     * - 조건: title = ?
+////     */
+////    List<Sample> findAllByTitle(String type);
+////
+////    List<Sample> findAllByTitleContaining(String title);
+//
+//    // 2) JPQL
+////    @Query("SELECT s FROM Sample s WHERE s.title LIKE %:title%")
+////    List<Sample> findAllByNameLike(@Param("title") String title);
 }
 
 

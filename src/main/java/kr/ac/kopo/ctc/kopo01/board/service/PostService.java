@@ -1,4 +1,4 @@
-package kr.ac.kopo.ctc.kopo01.board.service.designpattern;
+package kr.ac.kopo.ctc.kopo01.board.service;
 
 import kr.ac.kopo.ctc.kopo01.board.domain.board.Post;
 
