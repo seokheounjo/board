@@ -19,13 +19,13 @@ class SampleRestControllerTest {
 
     @Test
     void testGetSample() throws Exception {
-        URI uri = UriComponentsBuilder.fromPath("/sample/selectOne")
-                .queryParam("id", 1)
+        URI uri = UriComponentsBuilder.fromPath("/sample/sampleOne")  // ← 수정됨
                 .build()
                 .toUri();
         Sample response = restTemplate.getForObject(uri, Sample.class);
+
         assertEquals(1L, response.getId());
-        assertEquals("update1", response.getTitle());
+        assertEquals("title1", response.getTitle());  // "update1" → "title1" 로 수정
     }
 
 

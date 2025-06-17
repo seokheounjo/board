@@ -8,6 +8,8 @@ import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 
+import org.springframework.context.annotation.Import;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -28,6 +30,7 @@ class SampleControllerTest {
     private SampleService sampleService;
 
     @Test
+    @WithMockUser(username = "test", roles = {"USER"})
     void getSample() throws Exception {
         Sample sample = new Sample(1L, "title1");
         Mockito.when(sampleService.selectOne(1L)).thenReturn(sample);
