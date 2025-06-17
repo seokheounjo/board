@@ -22,7 +22,7 @@ public class HomeController {
 
     @GetMapping("/home")
     public String home(Model model) {
-        model.addAttribute("name", "kopo00");  // 모델에 값 삽입
+        model.addAttribute("name", "kopo01");  // 모델에 값 삽입
         return "home";  // templates/home.html 또는 home.jsp
     }
 
