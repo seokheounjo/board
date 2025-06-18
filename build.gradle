@@ -21,9 +21,14 @@ repositories {
 
 dependencies {
 
+	// MapStruct
+	implementation 'org.mapstruct:mapstruct:1.5.5.Final'
+	annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.5.Final'
+
 	//Lombok
-	compileOnly 'org.projectlombok:lombok'
-	annotationProcessor 'org.projectlombok:lombok'
+	compileOnly 'org.projectlombok:lombok:1.18.30'
+	annotationProcessor 'org.projectlombok:lombok:1.18.30'
+	annotationProcessor "org.projectlombok:lombok-mapstruct-binding:0.2.0"
 
 
 	// 테스트에서도 Lombok을 사용하려면 다음 의존성도 추가
@@ -67,6 +72,8 @@ dependencies {
 	runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'
 	runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5'
 
+	//Actuator
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 
 
 

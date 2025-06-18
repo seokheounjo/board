@@ -1,9 +1,7 @@
 package kr.ac.kopo.ctc.kopo01.board.repository;
 
 import kr.ac.kopo.ctc.kopo01.board.domain.Child;
-import kr.ac.kopo.ctc.kopo01.board.domain.Parent;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
