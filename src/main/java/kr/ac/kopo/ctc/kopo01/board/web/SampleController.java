@@ -51,9 +51,8 @@ public class SampleController {
         return "noTransactional";
     }
     @GetMapping("/transactional")
-    @ResponseBody
-    public String Transactional(Model model){
-        sampleService.testNoTransactional();
+    public String Transactional() {
+        sampleService.testTransactional();
         return "Transactional";
     }
 
@@ -63,9 +62,8 @@ public class SampleController {
         return  sampleService.testNoCache(3L);
     }
     @GetMapping("/Cache")
-    @ResponseBody
-    public  String Cache(Model model) {
-        return  sampleService.testNoCache(3L);
+    public String Cache() {
+        return sampleService.testCache(3L); // 오타 수정 필요
     }
 
 
