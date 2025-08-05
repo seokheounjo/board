@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
         - name: board
-          image: docker.io/seokheounjo/board:latest
+          image: docker.io/procof/board:latest
           ports:
             - containerPort: 8080
