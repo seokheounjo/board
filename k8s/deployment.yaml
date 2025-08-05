@@ -2,9 +2,20 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: board
+  labels:
+    app: board
 spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: board   # ← selector에 matchLabels 추가
   template:
+    metadata:
+      labels:
+        app: board  # ← template의 labels와 위 matchLabels가 동일해야 함
     spec:
       containers:
         - name: board
-          image: docker.io/procof/board:33264f9315c82c8171667090c4e15b21e0372803
+          image: docker.io/USERNAME/board:latest
+          ports:
+            - containerPort: 8080
