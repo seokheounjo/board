@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
         - name: board
-          image: docker.io/USERNAME/board:latest
+          image: docker.io/seokheounjo/board:latest
           ports:
             - containerPort: 8080
