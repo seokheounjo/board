@@ -18,5 +18,4 @@ public class MyController {
         model.addAttribute("username","조석현"); // 키(String)와 값(object)으로 이루어짐
         return "bye"; //뷰에게 전달되는 효과
     }
-
 }
