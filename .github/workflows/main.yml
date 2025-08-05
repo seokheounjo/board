@@ -1,7 +1,9 @@
 name: ci
+
 on:
   push:
     branches: [ main ]
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -20,7 +22,9 @@ jobs:
         with:
           context: .
           push: true
-          tags: docker.io/${{ secrets.DOCKER_USERNAME }}/board:${{ github.sha }}
+          tags: |
+            docker.io/${{ secrets.DOCKER_USERNAME }}/board:${{ github.sha }}
+            docker.io/${{ secrets.DOCKER_USERNAME }}/board:latest
 
   update-manifest:
     needs: build
@@ -28,13 +32,26 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: manifest          # 매니페스트 브랜치 체크아웃
+          ref: manifest   # 매니페스트 브랜치 체크아웃
+
+      # yq 설치
+      - name: Install yq
+        run: |
+          sudo wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O /usr/bin/yq
+          sudo chmod +x /usr/bin/yq
+
+      # 이미지 태그 업데이트
       - name: Update image tag
         run: |
           yq e '.spec.template.spec.containers[0].image = "docker.io/${{ secrets.DOCKER_USERNAME }}/board:${{ github.sha }}"' -i k8s/deployment.yaml
+
+      # Git commit & push
       - name: Commit & push
         run: |
           git config user.name "ci-bot"
           git config user.email "ci@local"
-          git commit -am "ci: image ${{ github.sha }}"
+          git add k8s/deployment.yaml
+          git commit -m "ci: image ${{ github.sha }}" || echo "No changes to commit"
           git push origin manifest
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
