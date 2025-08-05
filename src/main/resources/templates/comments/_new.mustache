@@ -1,0 +1,67 @@
+<div class="card m-2" id="comments-new">
+    <div class="card-body">
+        <form>
+            <div class="mb-3">
+                <label class="form-label">닉네임</label>
+                <input type="text" class="form-control" id="new-comment-nickname">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">댓글</label>
+                <textarea type="text" class="form-control" id="new-comment-body" rows="3"></textarea>
+            </div>
+            {{#data}}
+                <input type="hidden" id="new-comment-article-id" value="{{id}}">
+            {{/data}}
+
+            <button type="button" class="btn btn-primary" id="comment-create-btn">댓글 작성</button>
+        </form>
+    </div>
+</div>
+
+
+<!-- 스크립트를 활용한 버튼 기능 구현 -->
+<script>
+    {
+        // 웹페이지에서 특정 요소를 선택할 때 사용 id, name, class, HTML tag...
+        const commentCreateBtn = document.querySelector("#comment-create-btn");
+
+        //특정 요소가 이벤트를감지하도록 처리하는 함수 (이벤트 타입, 이벤트 처리 함수)
+        commentCreateBtn.addEventListener("click",
+        function() {
+
+
+        console.log("버튼 클릭");
+
+        // 객체 리터럴 방식 - 객체를 변수로 선언해서 사용
+        // var 변수 = { 키:값, 키:값, 키:값, 키:값 .... }
+
+        const comment = {
+            //닉네임
+            nickname : document.querySelector("#new-comment-nickname").value,
+
+            //본문
+            body : document.querySelector("#new-comment-body").value,
+
+            //게시글 아이디
+            article_id : document.querySelector("#new-comment-article-id").value
+        };
+        console.log(comment);
+
+        //Post 요청문 만들기
+        const url = "/articles/" + comment.article_id + "/comments";
+        fetch(url, {
+            method : "POST",
+            headers : {
+                "Content-Type" : "application/json"
+            },
+            body : JSON.stringify(comment)
+        }).then(response => {
+        const msg = (response.ok) ? "댓글 생성 완료" : "댓글 생성 실패";
+        alert(msg);
+        });
+
+
+        } );
+
+    }
+</script>
