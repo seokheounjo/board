@@ -64,7 +64,8 @@ jobs:
           else
             git add k8s/deployment.yaml
             git commit -m "ci: image ${{ github.sha }}"
-            git push origin manifest
+            git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} manifest
           fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
