@@ -8,14 +8,21 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: board   # ← selector에 matchLabels 추가
+      app: board
   template:
     metadata:
       labels:
-        app: board  # ← template의 labels와 위 matchLabels가 동일해야 함
+        app: board
     spec:
       containers:
         - name: board
           image: docker.io/procof/board:latest
           ports:
             - containerPort: 8080
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:mysql://mysql:3306/boarddb
+            - name: SPRING_DATASOURCE_USERNAME
+              value: boarduser
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: boardpass
